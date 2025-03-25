@@ -12,6 +12,7 @@ const cartProducts = [
     size: "Large",
     imageSrc: "/product-01.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
+    quantity: 1,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const cartProducts = [
     size: "Large",
     imageSrc: "/product-02.jpg",
     imageAlt: "Front of men's Basic Tee in sienna.",
+    quantity: 2,
   },
 ];
 
@@ -49,7 +51,7 @@ export default function OrderSummary() {
 
   useEffect(() => {
     const updatedPrice = products.reduce((total, product) => {
-      const price = parseFloat(product.price.slice(1));
+      const price = parseFloat(product.price.slice(1)) * product.quantity;
       return (total += price);
     }, 0);
     setPrice(updatedPrice);
@@ -100,6 +102,7 @@ export default function OrderSummary() {
                       {product.color}
                     </p>
                     <p className="mt-1 text-sm text-gray-500">{product.size}</p>
+                    <p className="mt-1 text-sm text-gray-500">{product.quantity}</p>
                   </div>
 
                   <div className="ml-4 flow-root flex-shrink-0">
